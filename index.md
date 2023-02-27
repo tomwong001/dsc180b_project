@@ -16,3 +16,6 @@ The DQN is trained using reinforcement learning, wherein the neural networks min
 Instead of the brute force method finding the maximum reward, the DQN uses experience replay to more efficiently calculate the reward
 
 Our reward function will be computed with the STNP reward function, namely the acquisition function of Latent Information Gain (LIG). Given the state information and parameter information, the model will ideally learn the mapping function of the acquisition function.
+
+<iframe src="assets/stage1.png" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/stage2.png" width=800 height=600 frameBorder=0></iframe>
