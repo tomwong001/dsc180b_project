@@ -42,29 +42,29 @@ Sample random minibatch of transitions (t, at, rt, t+1) from D
 Set yj = rj for terminal j+1 or rj+  maxa'Q(j+1,a'; ) from non-terminal j+1
 Perform a gradient descent step on (yj-Q(j,aj;))2
 
-Algorithm 1: Interactive Neural Process
-Input: Initial simulation dataset S1, DQN parameters 
-Train the model NP(1)(S1);
-i=1,2, ...;
-Learn (z1, z2, ... , zt) ~ qi(z1:T| x1:T, Si);
-Predict (x1, x2, ... , xT) ~ pi(x1:T | z1:T, Si);
-Select a batch {(i+1)} arg max Ep(x1:T|z1:T, )[r(x1:T|z1:T, )] ;
-Simulate {x(i+1)1:T}=F(i+1, u);
-Augment training set Si+1=Si {i+1, x(i+1)1:T};
-Update the model NP(i+1)(Si+1), DQN;
+Algorithm 1: Interactive Neural Process <br>
+Input: Initial simulation dataset S1, DQN parameters  <br>
+Train the model NP(1)(S1); <br>
+i=1,2, ...; <br>
+Learn (z1, z2, ... , zt) ~ qi(z1:T| x1:T, Si); <br>
+Predict (x1, x2, ... , xT) ~ pi(x1:T | z1:T, Si); <br>
+Select a batch {(i+1)} arg max Ep(x1:T|z1:T, )[r(x1:T|z1:T, )] ; <br>
+Simulate {x(i+1)1:T}=F(i+1, u); <br>
+Augment training set Si+1=Si {i+1, x(i+1)1:T}; <br>
+Update the model NP(i+1)(Si+1), DQN; <br>
 
-Algorithm 2: Interactive Neural Process with DQN
-Input: Initial simulation dataset S1, DQN parameters 
-Train STNP model for 1 epoch, collect data points (x_c, y_c, x_t, y_t, y_t_pred) at every 2000 iterations. (collect  10 sets of tuples in total)
-Using data points in step1, we generate 10 environments. We train DQN model for 150 epochs on each environment, where the tuples collected later are trained earlier
-After pre-training the DQN model in step1 and 2, use the DQN to actively query the unselected dataset for STNP model (below is the repetition of algorithm 1)
-Train the model NP(1)(S1);
-Learn (z1, z2, ... , zt) ~ qi(z1:T| x1:T, Si);
-Predict (x1, x2, ... , xT) ~ pi(x1:T | z1:T, Si);
-Select the action with the DQN’s largest Q-value. Find corresponding i+1
-Augment training set Si+1=Si {i+1, x(i+1)1:T};
-Update the model NP(i+1)(Si+1),
-The definitions of variables can be found from the original paper written by Wu et al. 
+Algorithm 2: Interactive Neural Process with DQN <br>
+Input: Initial simulation dataset S1, DQN parameters <br>
+Train STNP model for 1 epoch, collect data points (x_c, y_c, x_t, y_t, y_t_pred) at every 2000 iterations. (collect  10 sets of tuples in total) <br>
+Using data points in step1, we generate 10 environments. We train DQN model for 150 epochs on each environment, where the tuples collected later are trained earlier <br>
+After pre-training the DQN model in step1 and 2, use the DQN to actively query the unselected dataset for STNP model (below is the repetition of algorithm 1) <br>
+Train the model NP(1)(S1); <br>
+Learn (z1, z2, ... , zt) ~ qi(z1:T| x1:T, Si); <br> 
+Predict (x1, x2, ... , xT) ~ pi(x1:T | z1:T, Si); <br>
+Select the action with the DQN’s largest Q-value. Find corresponding i+1 <br>
+Augment training set Si+1=Si {i+1, x(i+1)1:T}; <br>
+Update the model NP(i+1)(Si+1), <br>
+The definitions of variables can be found from the original paper written by Wu et al.  <br>
 
 
 
